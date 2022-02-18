@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="content-section">
+    <h2>Virtual Tour</h2>
+        {% if out %}
+            {% for ot in out %}
+            <div class="content-section">
+                <div class="text-left">
+                    <p>{{ot[0]}}</p>
+                </div>
+                <div class="media">
+                    <img src="/static/location_pics/images.png" alt="" class="img-thumbnail, account-img" style="float:left" width="100px" height="100px" object-fit="contain">
+                    <div>
+                        <p>Total Likes:{{ot[1]}}</p><br>
+                        <p id={{ot[0]}}>Total Downloads:{{ot[2]}}</p><br>
+                    </div><br>
+                </div>
+                <div class="text-left">
+                    <a href="{{ url_for('likes', video_name=ot[0]) }}"><button type="button" class="btn" position="fixed" bottom="0px" right="0px" >Like</button></a><br>
+                </div>
+
+               
+                <div class="text-right">
+                    <a href="/static/videos/{{ot[0]}}" download>
+                        <button type="button" class="btn" position="fixed" bottom="0px" right="0px" onclick="inc('{{ot[0]}}')">Download</button>
+                    </a><br>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h3>No Videos are Registered</h3>
+        {% endif %}
+    </div>    		
+    </div>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+{% endblock content %}
+
+
+ 
